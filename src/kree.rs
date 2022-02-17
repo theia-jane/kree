@@ -292,6 +292,7 @@ impl Kree {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::env;
 
     #[test]
     fn parse_trigger() {
@@ -299,5 +300,13 @@ mod tests {
         raw_trigger.insert("class".to_string(), "test-class".to_string());
 
         assert_eq!(Kree::parse_trigger(&raw_trigger).unwrap().class, "test-class".to_string());
+    }
+
+    #[test]
+    fn expand_var() {
+        // TODO clean up dependency on env var being present (mock it somehow)
+        if let Ok(home_val) = env::var(&"HOME") {
+            assert_eq!(Kree::expand_var(&String::from("${HOME}")), home_val);
+        }
     }
 }
