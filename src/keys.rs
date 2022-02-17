@@ -113,3 +113,26 @@ pub enum Event {
     KeyDown,
     KeyUp,
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_parse_key_chord() {
+        let (key, mods) = parse_key_chord(String::from("Shift+a"));
+        assert_eq!(key, 97);
+        assert_eq!(mods, vec![Mod::Shift]);
+
+        // Order currently matters / is preserved
+        let (key, mods) = parse_key_chord(String::from("Super+Shift+x"));
+        assert_eq!(key, 120);
+        assert_eq!(mods, vec![Mod::Super, Mod::Shift]);
+        assert_ne!(mods, vec![Mod::Shift, Mod::Super]);
+
+        // Case of modifiers should not matter
+        let (_, mods) = parse_key_chord(String::from("SHIFT+a"));
+        assert_eq!(mods, vec![Mod::Shift]);
+    }
+
+}
