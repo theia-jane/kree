@@ -14,6 +14,10 @@
    #+END_SRC
    You can run this from your =~/.xinitrc= or =~/.config/i3/config=. For some
    reason systemd didn't work for me
+** Test
+  #+BEGIN_SRC shell
+  cargo test
+  #+END_SRC
 * Terminology
 ** Key chord
 ** Key sequence
