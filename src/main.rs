@@ -10,7 +10,7 @@ fn main() {
     let matches = App::new("kree")
         .version("0.1.0")
         .about("A tree style keymapper.")
-        .author("Tyler Ware")
+        .author("Theia Ware")
         .arg(Arg::with_name("config")
              .short("c")
              .long("config")
