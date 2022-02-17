@@ -135,4 +135,12 @@ mod test {
         assert_eq!(mods, vec![Mod::Shift]);
     }
 
+    #[test]
+    fn test_creating_key_combo() {
+        let key_combo = KeyCombo::new(Event::KeyUp, &vec![Mod::Shift, Mod::Super], 97);
+        assert_eq!(key_combo.mods, 65 as ModMaskCode);
+        assert_eq!(key_combo.key, 97 as KeyCode);
+        assert_eq!(key_combo.event, Event::KeyUp);
+    }
+
 }
